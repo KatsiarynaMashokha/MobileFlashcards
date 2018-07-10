@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import reducer from './reducers/index';
 import Decks from './components/Decks';
 import AddDeck from './components/AddDeck';
+import Deck from './components/Deck';
 
 const Tabs = createBottomTabNavigator({
   Decks: {
@@ -53,6 +54,15 @@ const Tabs = createBottomTabNavigator({
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
   },
 })
 
