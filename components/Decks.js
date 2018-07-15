@@ -19,7 +19,6 @@ class Decks extends Component {
                             'Deck',
                             {
                                 deckTitle: deck,
-                                cardsCount: decks[deck].questions.length
                             }
                         )}>
                             <Text style={styles.deckTitle}>{deck}</Text>
@@ -51,6 +50,7 @@ const styles = StyleSheet.create({
     cardNumber: {
         color: 'gray',
         fontSize: 14,
+        textAlign: 'center',
     },
     deckRowWrapper: {
         margin: 20,

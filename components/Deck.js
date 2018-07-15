@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 class Deck extends Component {
@@ -7,14 +8,9 @@ class Deck extends Component {
         return { title: navigation.state.params.deckTitle }
     }
 
-    addCard = () => {
-    }
-
-    startQuiz = () => {
-    }
-
     render() {
-        const { deckTitle, cardsCount } = this.props.navigation.state.params;
+        const { deckTitle } = this.props.navigation.state.params;
+        const cardsCount = this.props.decks[deckTitle].questions.length;
 
         return (
             <View style={styles.container}> 
@@ -22,16 +18,32 @@ class Deck extends Component {
                 <Text style={styles.cardNumber}>{cardsCount} cards</Text>
                 <TouchableOpacity
                     style={styles.addCardBtn}
-                    onPress={this.addCard}>
+                    onPress={() => this.props.navigation.navigate(
+                        'AddCard',
+                        {
+                            deckTitle
+                        }
+                    )}>
                     <Text style={styles.addCardText}>Add Card</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.startQuizBtn}
-                    onPress={this.startQuiz}>
+                    onPress={() =>  this.props.navigation.navigate(
+                        'Quiz',
+                        {
+                            deckTitle
+                        }
+                        )}>
                     <Text style={styles.startQuizText}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>
         );
+    }
+}
+
+function mapStateToProps (decks) {
+    return {
+        decks
     }
 }
 
@@ -79,4 +91,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Deck;
+export default connect(mapStateToProps)(Deck);

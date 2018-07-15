@@ -9,6 +9,8 @@ import reducer from './reducers/index';
 import Decks from './components/Decks';
 import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
+import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 
 const Tabs = createBottomTabNavigator({
   Decks: {
@@ -64,7 +66,32 @@ const MainNavigator = createStackNavigator({
       }
     }
   },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
+  },
 })
+
+const navOptionsStyle = {
+  headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+};
 
 export default class App extends React.Component {
   render() {

@@ -15,8 +15,18 @@ function decks(state = {}, action) {
                 ...action.result
             };
         case actions.ADD_CARD_TO_DECK:
+            const { card, deckTitle } = action.result;
 
-            return {};
+            return {
+                ...state,
+                [deckTitle] : {
+                    ...state[deckTitle],
+                    questions : {
+                        ...state.categories.questions,
+                        ...card
+                    }
+                }
+            };
         case actions.GET_CARDS_FOR_DECK:
 
             return {};

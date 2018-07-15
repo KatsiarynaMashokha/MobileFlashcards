@@ -16,11 +16,11 @@ export function addDeckAction(deck) {
     }
 }
 
-export function addCardToDeck(card, deckId) {
+export function addCardToDeckAction(deckTitle, card) {
     
     return {
         type: actions.ADD_CARD_TO_DECK,
-        result: { card, deckId }
+        result: { card, deckTitle }
     }
 }
 
