@@ -53,7 +53,7 @@ class Quiz extends Component {
                         </TouchableOpacity>
                     <TouchableOpacity
                         onPress={this.submitAnswer}
-                        activeOpacity={disabled ? 1 : 0.7}
+                        disabled={!this.state.questionShown}
                         style={styles.correctBtn}>
                         <Text style={styles.textBtn}>Correct</Text>
                     </TouchableOpacity>
