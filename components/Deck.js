@@ -15,7 +15,7 @@ class Deck extends Component {
         return (
             <View style={styles.container}> 
                 <Text style={styles.deckTitle}>{deckTitle}</Text>
-                <Text style={styles.cardNumber}>{cardsCount} cards</Text>
+                <Text style={styles.cardNumber}>{cardsCount} {cardsCount == 1 ? 'card' : 'cards'}</Text>
                 <TouchableOpacity
                     style={styles.addCardBtn}
                     onPress={() => this.props.navigation.navigate(

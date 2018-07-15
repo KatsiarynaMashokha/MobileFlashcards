@@ -22,7 +22,7 @@ class Decks extends Component {
                             }
                         )}>
                             <Text style={styles.deckTitle}>{deck}</Text>
-                            <Text style={styles.cardNumber}>{decks[deck].questions.length} cards</Text>
+                            <Text style={styles.cardNumber}>{decks[deck].questions.length} {decks[deck].questions.length == 1 ? 'card' : 'cards'}</Text>
                         </TouchableOpacity>
                     )
                 })}

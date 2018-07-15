@@ -21,10 +21,7 @@ function decks(state = {}, action) {
                 ...state,
                 [deckTitle] : {
                     ...state[deckTitle],
-                    questions : {
-                        ...state.categories.questions,
-                        ...card
-                    }
+                    questions : state[deckTitle].questions.concat(card),
                 }
             };
         case actions.GET_CARDS_FOR_DECK:
