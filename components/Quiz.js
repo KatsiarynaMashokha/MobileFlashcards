@@ -15,6 +15,7 @@ class Quiz extends Component {
         this.submitIncorrectAnswer = this.submitIncorrectAnswer.bind(this);
         this.showAnswerOrQuestion = this.showAnswerOrQuestion.bind(this);
         this.clearNotificationAndScheduleNewOne = this.clearNotificationAndScheduleNewOne.bind(this);
+        this.startNewQuiz = this.startNewQuiz.bind(this);
     }
 
     submitCorrectAnswer() {
@@ -38,6 +39,20 @@ class Quiz extends Component {
 
     clearNotificationAndScheduleNewOne() {
         clearLocalNotification().then(setLocalNotification);
+    }
+
+    startNewQuiz(deckTitle) {
+        this.setState({
+            currentQuestion: 1,
+            correctAnswers: 0,
+            questionShown: true,
+        });
+        this.props.navigation.navigate(
+            'Quiz',
+            {
+                deckTitle
+            }
+        )
     }
 
     render() {
@@ -75,10 +90,30 @@ class Quiz extends Component {
                         <Text style={styles.textBtn}>Incorrect</Text>
                     </TouchableOpacity>
                 </View>:
-                <Text style={styles.result}>
-                {this.clearNotificationAndScheduleNewOne()}
-                Quiz is over! Your score is {(this.state.correctAnswers * 100/totalQuestions).toFixed(1)}%
-                </Text>
+                <View>
+                     {this.clearNotificationAndScheduleNewOne()}
+                    <Text style={styles.result}>
+                    Quiz is over!
+                    </Text>
+                    <Text style={styles.result}>
+                    Your score is {(this.state.correctAnswers * 100/totalQuestions).toFixed(1)}%
+                    </Text>
+                    <TouchableOpacity
+                        onPress={() => this.startNewQuiz(deckTitle)}
+                        style={styles.quizOptionBtn}>
+                        <Text style={styles.textBtn}>Restart Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate(
+                            'Deck',
+                            {
+                                deckTitle
+                            }
+                        )}
+                        style={styles.quizOptionBtn}>
+                        <Text style={styles.textBtn}>Back to Deck</Text>
+                    </TouchableOpacity>
+                </View>
                 }
             </View>
         )
@@ -132,6 +167,16 @@ const styles = StyleSheet.create({
     result: {
         fontSize: 16,
         fontWeight: '500',
+        marginBottom: 40,
+        textAlign: 'center',
+    },
+    quizOptionBtn: {
+        backgroundColor: 'purple',
+        padding: 10,
+        borderRadius: 7,
+        height: 45,
+        width: 150,
+        marginBottom: 40,
     },
 });
 

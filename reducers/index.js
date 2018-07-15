@@ -24,9 +24,6 @@ function decks(state = {}, action) {
                     questions : state[deckTitle].questions.concat(card),
                 }
             };
-        case actions.GET_CARDS_FOR_DECK:
-
-            return {};
         default:
 
             return state;

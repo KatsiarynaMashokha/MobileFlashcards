@@ -23,11 +23,3 @@ export function addCardToDeckAction(deckTitle, card) {
         result: { card, deckTitle }
     }
 }
-
-export function getCardsForDeck(deckId) {
-    
-    return {
-        type: actions.GET_CARDS_FOR_DECK,
-        result: { }
-    }
-}

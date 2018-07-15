@@ -37,13 +37,6 @@ export const getDecks = () => {
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => result ? JSON.parse(result) : setupInitialData());
 }
 
-export const getDeck = deckId => {
-
-    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
-
-    });
-}
-
 export const saveDeckTitle = deck => {
 
     return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(deck));
