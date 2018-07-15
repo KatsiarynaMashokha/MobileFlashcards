@@ -1,3 +1,7 @@
+# React Native Project: Mobile Flashcards
+## Description:
+Mobile Flashcards is a mobile application that helps to study. It has a functionality to create many different decks, add questions and answers to them, and then test yourself by taking a quiz and answering those questions. In the end of the quiz the score is displayed. Also, if there was not any activity for a day, notification reminder to study will be received.
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
