@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeckAction } from '../actions';
 import { saveDeckTitle } from '../utils/api';
@@ -15,6 +15,17 @@ class AddDeck extends Component {
     }
 
     addDeck() {
+        if(this.state.title.length == 0) {
+            return Alert.alert(
+                'Alert',
+                'Deck title should not be empty',
+              )
+        } else if(this.props.decks[this.state.title]) {
+            return Alert.alert(
+                'Alert',
+                'There is already a deck with the same title exists. Please name your deck differently',
+              )
+        }
         const deck = {[this.state.title] : {
             ...this.state
         }};
@@ -82,4 +93,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect()(AddDeck);
+function mapStateToProps (decks) {
+    return {
+        decks
+    }
+}
+
+export default connect(mapStateToProps)(AddDeck);

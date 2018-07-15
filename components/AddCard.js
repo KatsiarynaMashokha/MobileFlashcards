@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { addCardToDeck } from '../utils/api';
 import { addCardToDeckAction } from '../actions';
 
@@ -19,7 +19,13 @@ class AddCard extends Component {
         this.addCard = this.addCard.bind(this);
     }
 
-   addCard(deckTitle) {
+    addCard(deckTitle) {
+        if(this.state.question.length == 0 || this.state.question.answer) {
+            return Alert.alert(
+            'Alert',
+            'Fields should not be empty',
+          )
+       }
        const card = { answer: this.state.answer, question: this.state.question };
        addCardToDeck(deckTitle, card);
        this.props.dispatch(addCardToDeckAction(deckTitle, card));
