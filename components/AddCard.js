@@ -30,7 +30,6 @@ class AddCard extends Component {
    };
 
     render() {
-        console.log(this.props)
         const { deckTitle } = this.props.navigation.state.params;
     
         return (

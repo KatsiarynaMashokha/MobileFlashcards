@@ -10,11 +10,19 @@ class Quiz extends Component {
             correctAnswers: 0,
             questionShown: true,
         }
-        this.submitAnswer = this.submitAnswer.bind(this);
+        this.submitCorrectAnswer = this.submitCorrectAnswer.bind(this);
+        this.submitIncorrectAnswer = this.submitIncorrectAnswer.bind(this);
         this.showAnswerOrQuestion = this.showAnswerOrQuestion.bind(this);
     }
 
-    submitAnswer() {
+    submitCorrectAnswer() {
+        this.setState({
+            currentQuestion: this.state.currentQuestion + 1,
+            correctAnswers: this.state.correctAnswers + 1,
+        });
+    }
+
+    submitIncorrectAnswer() {
         this.setState({
             currentQuestion: this.state.currentQuestion + 1
         });
@@ -31,7 +39,6 @@ class Quiz extends Component {
         const currentDeck = this.props.decks[deckTitle];
         const questions = currentDeck.questions;
         const totalQuestions = questions.length;
-        console.log(this.state.questionShown);
 
         return (
             <View style={styles.container}>
@@ -52,20 +59,18 @@ class Quiz extends Component {
                             </Text>
                         </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={this.submitAnswer}
-                        disabled={!this.state.questionShown}
+                        onPress={this.submitCorrectAnswer}
                         style={styles.correctBtn}>
                         <Text style={styles.textBtn}>Correct</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={this.submitAnswer}
-                        disabled={!this.state.questionShown}
+                        onPress={this.submitIncorrectAnswer}
                         style={styles.incorrectBtn}>
                         <Text style={styles.textBtn}>Incorrect</Text>
                     </TouchableOpacity>
                 </View>:
                 <Text style={styles.result}>
-                    Quiz is over! Your score is %
+                Quiz is over! Your score is {(this.state.correctAnswers * 100/totalQuestions).toFixed(1)}%
                 </Text>
                 }
             </View>
@@ -109,6 +114,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 40,
         fontSize: 22,
+        maxWidth: 300,
     },
     answer: {
         textAlign: 'center',
@@ -118,6 +124,7 @@ const styles = StyleSheet.create({
     },
     result: {
         fontSize: 16,
+        fontWeight: '500',
     },
 });
 

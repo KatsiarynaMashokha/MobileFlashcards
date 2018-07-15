@@ -26,7 +26,7 @@ class Deck extends Component {
                     )}>
                     <Text style={styles.addCardText}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {cardsCount > 0 && <TouchableOpacity
                     style={styles.startQuizBtn}
                     onPress={() =>  this.props.navigation.navigate(
                         'Quiz',
@@ -35,7 +35,7 @@ class Deck extends Component {
                         }
                         )}>
                     <Text style={styles.startQuizText}>Start Quiz</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
             </View>
         );
     }
