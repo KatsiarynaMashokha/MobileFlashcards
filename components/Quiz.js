@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class Quiz extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Quiz extends Component {
         this.submitCorrectAnswer = this.submitCorrectAnswer.bind(this);
         this.submitIncorrectAnswer = this.submitIncorrectAnswer.bind(this);
         this.showAnswerOrQuestion = this.showAnswerOrQuestion.bind(this);
+        this.clearNotificationAndScheduleNewOne = this.clearNotificationAndScheduleNewOne.bind(this);
     }
 
     submitCorrectAnswer() {
@@ -32,6 +34,10 @@ class Quiz extends Component {
         this.setState({
             questionShown: !this.state.questionShown
         });
+    }
+
+    clearNotificationAndScheduleNewOne() {
+        clearLocalNotification().then(setLocalNotification);
     }
 
     render() {
@@ -70,6 +76,7 @@ class Quiz extends Component {
                     </TouchableOpacity>
                 </View>:
                 <Text style={styles.result}>
+                {this.clearNotificationAndScheduleNewOne()}
                 Quiz is over! Your score is {(this.state.correctAnswers * 100/totalQuestions).toFixed(1)}%
                 </Text>
                 }
